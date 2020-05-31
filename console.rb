@@ -4,6 +4,10 @@ require_relative('models/customer')
 
 require('pry-byebug')
 
+Ticket.delete_all()
+Film.delete_all()
+Customer.delete_all()
+
 film1 = Film.new({
   'title' => 'CodeClan: The Movie',
   'price' => 10
