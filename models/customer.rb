@@ -10,7 +10,7 @@ class Customer
     @funds = options["funds"].to_i
   end
 
-  def save() # CREATE
+  def save() 
     sql = "INSERT INTO customers
     (
       name,
@@ -26,13 +26,13 @@ class Customer
     @id = customer['id'].to_i
   end
  
-  def self.all() # READ
+  def self.all() 
     sql = "SELECT * FROM customers"
     customer_data = SqlRunner.run(sql)
     return Customer.map_items(customer_data)
   end
  
-  def self.update() # UPDATE
+  def self.update() 
     sql = "UPDATE customers SET 
     (
       name,
@@ -46,7 +46,13 @@ class Customer
     values = [@name, @funds, @id]
     SqlRunner.run(sql, values)
   end
-
+ 
+  def delete()
+    sql = "DELETE FROM customers WHERE id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
+  end 
+ 
   def self.map_items(customer_data)
     result = customer_data.map{|customer| Customer.new(customer)}
     return result
