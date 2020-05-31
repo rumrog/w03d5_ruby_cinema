@@ -27,7 +27,7 @@ end
     @id = ticket['id'].to_i
   end
   
-  def self.update() 
+  def update() 
     sql = "UPDATE tickets SET 
     (
       film_id,
@@ -42,17 +42,22 @@ end
     SqlRunner.run(sql, values)
   end
 
+  def delete()
+    sql = "DELETE FROM tickets WHERE id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
+  end 
+
   def self.all()
     sql = "SELECT * FROM tickets"
     ticket_data = SqlRunner.run(sql)
     return Ticket.map_items(ticket_data)
   end
 
-  def delete()
-    sql = "DELETE FROM tickets WHERE id = $1"
-    values = [@id]
-    SqlRunner.run(sql, values)
-  end 
+  def self.delete_all()
+    sql = "DELETE FROM tickets"
+    SqlRunner.run(sql)
+  end
   
   def self.map_items(ticket_data)
     result = ticket_data.map{|ticket| Ticket.new(ticket)}
