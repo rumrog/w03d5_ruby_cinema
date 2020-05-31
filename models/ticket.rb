@@ -27,6 +27,21 @@ end
     @id = ticket['id'].to_i
   end
   
+  def self.update() # UPDATE
+    sql = "UPDATE tickets SET 
+    (
+      film_id,
+      customer_id
+    )
+    =
+    (
+      $1, $2
+    )
+    WHERE id = $3"
+    values = [@film_id, @customer_id, @id]
+    SqlRunner.run(sql, values)
+  end
+
   def self.all()
     sql = "SELECT * FROM tickets"
     ticket_data = SqlRunner.run(sql)
