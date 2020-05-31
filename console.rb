@@ -8,6 +8,8 @@ Ticket.delete_all()
 Film.delete_all()
 Customer.delete_all()
 
+# MVP.1 - Create customers, films and tickets.
+
 film1 = Film.new({
   'title' => 'CodeClan: The Movie',
   'price' => 10
@@ -65,7 +67,7 @@ ticket2 = Ticket.new({
 ticket2.save()
 
 ticket3 = Ticket.new({
-  'filmd_id' => film3.id,
+  'film_id' => film3.id,
   'customer_id' => customer3.id
 })
 

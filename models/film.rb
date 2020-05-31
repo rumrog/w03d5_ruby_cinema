@@ -10,6 +10,8 @@ class Film
     @price = options["price"].to_i
   end
 
+  # MVP.2 - CRUD actions (create, read, update, delete) films, films and tickets.
+
   def save()
     sql = "INSERT INTO films 
     (
@@ -61,6 +63,19 @@ class Film
   def self.map_items(film_data)
     result = film_data.map{|film| Film.new(film)}
     return result
+  end
+
+  # MVP.3.2 - Show which customers are coming to see one film.
+  def customers()
+    sql = "
+      SELECT customers.* FROM customers
+      INNER JOIN tickets
+      ON customers.id = tickets.customer_id
+      WHERE tickets.film_id = $1
+    "
+    values = [@id]
+    results = SqlRunner.run(sql, values)
+    return Customer.map_items(results)
   end
 
 end

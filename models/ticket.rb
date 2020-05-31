@@ -3,13 +3,15 @@ require_relative('../db/sql_runner.rb')
 class Ticket
 
 attr_reader :id
-attr_accessor :film_id, :customer_id
+attr_accessor :film_id, :customer_id 
 
 def initialize(options)
   @id = options["id"].to_i if options["id"]
-  @title = options["title"]
-  @price = options["price"].to_i
+  @film_id = options["film_id"]
+  @customer_id = options["customer_id"].to_i
 end
+
+  # MVP.2 - CRUD actions (create, read, update, delete) customers, films and tickets.
 
   def save()
     sql = "INSERT INTO tickets
