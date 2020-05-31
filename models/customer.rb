@@ -65,18 +65,7 @@ class Customer
     return result
   end
 
-  # MVP.3.1 - Show which films a customer has booked to see:
-  # def customers()
-  #   sql = "
-      # SELECT customers.* FROM customers
-      # INNER JOIN tickets
-      # ON customers.id = tickets.customer_id
-      # WHERE tickets.film_id = $1
-  #   "
-  #   values = [@id]
-  #   results = SqlRunner.run(sql, values)
-  #   # return Film.map_items(results)
-  # end
+  # MVP.3.1 - Show which films a customer has booked to see.
 
   def films()
     sql = "
@@ -88,6 +77,13 @@ class Customer
     values = [@id]
     results = SqlRunner.run(sql, values)
     return Film.map_items(results)
+  end
+
+  # EXTENSION.1 - Buying tickets should decrease the funds of the customer by the price
+
+  def decrease_funds(ticket_price) 
+    @funds -= ticket_price
+    update()
   end
 
 end

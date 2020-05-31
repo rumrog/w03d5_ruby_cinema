@@ -66,6 +66,7 @@ class Film
   end
 
   # MVP.3.2 - Show which customers are coming to see one film.
+  
   def customers()
     sql = "
       SELECT customers.* FROM customers
