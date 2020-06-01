@@ -86,4 +86,10 @@ class Customer
     update()
   end
 
+  # EXTENSION.2 - Check how many tickets were bought by a customer
+
+  def how_many_tickets()
+    return films().size()
+  end
+
 end
