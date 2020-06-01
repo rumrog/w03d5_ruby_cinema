@@ -65,5 +65,5 @@ end
     result = ticket_data.map{|ticket| Ticket.new(ticket)}
     return result
   end
-  
+
 end

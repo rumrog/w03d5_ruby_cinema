@@ -79,4 +79,10 @@ class Film
     return Customer.map_items(results)
   end
 
+  # EXTENSION.3 - Check how many customers are going to watch a certain film
+
+  def how_many_customers()
+    return customers().size()
+  end 
+
 end
